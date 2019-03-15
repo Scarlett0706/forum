@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <h:outputStylesheet name="css/jsfcrud.css"/>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body style="background-image: url(resources/images/register_.jpg);background-size: cover">
+        <h:form>
+                <br>
+                    查看内容<h:inputText value="#{postController.like}" > </h:inputText>
+                </br>
+                <br/><h:commandButton value="查找" action="#{postController.findPostByLike()}"/>
+                </h:form>
+                <br/>
+               
+                <br/>
+                <h:panelGroup rendered="true">
+                    <h:form styleClass="jsfcrud_list_form">
+                    <h:dataTable var="Post"
+                                 value="#{postController.postSearchResults}"
+                                 border="0"
+                                 cellpadding="2"
+                                 cellspacing="0"
+                                 rowClasses="jsfcrud_odd_row,jsfcrud_even_row"
+                                 rules="all"
+                                 rendered="true">
+                        <h:column>
+                        <f:facet name="header">
+                        <h:outputText value="编号" />
+                        </f:facet>
+                            <h:outputText value="#{Post.idPost}" />
+                       </h:column>
+                        <h:column>
+                        <f:facet name="header">
+                        <h:outputText value="用户编号" />
+                        </f:facet>
+                            <h:outputText value="#{Post.idPeople.idPeople}" />
+                       </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                        <h:outputText value="内容" />
+                        </f:facet>
+                            <h:outputText value="#{Post.contentPost}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                            <h:outputText value="类型" />
+                           </f:facet>
+                            <h:outputText value="#{Post.type}"/>
+                        </h:column>
+                    </h:dataTable>
+                    </h:form>
+                </h:panelGroup>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+         <h:form styleClass="jsfcrud_list_form">
+                    <h:outputText escape="false" value="#{bundle.ListPostEmpty}" rendered="#{postController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{postController.items.rowCount >0}">
+                    <h:outputText value="#{postController.pagination.pageFirstItem + 1}..#{postController.pagination.pageLastItem + 1}/#{postController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{postController.previous}" value="#{bundle.Previous} #{postController.pagination.pageSize}" rendered="#{postController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{postController.next}" value="#{bundle.Next} #{postController.pagination.pageSize}" rendered="#{postController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{postController.items}" var="item" border="0"  cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px ;width:100%">
+                        <h:column >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPostTitle_idPost}" />
+                            </f:facet>
+                            <h:outputText value="#{item.idPost}" />
+                        </h:column>
+                        <h:column>
+                        <f:facet name="header">
+                        <h:outputText value="用户编号" />
+                        </f:facet>
+                            <h:outputText value="#{item.idPeople.idPeople}" />
+                       </h:column>
+                        <h:column>
+                            <f:facet name="header" >
+                                <h:outputText value="#{bundle.ListPostTitle_contentPost}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.contentPost}"/>
+                        </h:column>
+                        <h:column>
+                             <f:facet name="header">
+                                <h:outputText value="类型"/>
+                            </f:facet>
+                            <p >
+                            <h:outputText  value="#{item.type}"/>
+                            </p>
+                        </h:column>
+                        <h:column>
+                             <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{postController.prepareView}" value="#{bundle.ListPostViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{postController.destroy}" value="#{bundle.ListPostDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                </h:form>
+                 <p:dock position="bottom">
+                <p:menuitem value="退出" icon="resources/images/add2.png" url="login.xhtml"/>
+                <p:menuitem value="查看用户" icon="resources/images/member.png" url="people/List.xhtml"/>
+               </p:dock>
+    </h:body>
+</html>
+

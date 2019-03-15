@@ -1,0 +1,201 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+    <f:view contentType="text/html">
+        <h:head>
+        <h:outputStylesheet name="css/jsfcrud.css"/>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>主页</title>
+               
+            </f:facet>
+        </h:head>
+        <p:layout fullPage="true">
+           
+            <p:layoutUnit position="west" size="150">
+                <h:form>
+                <p:menu>
+                    <p:submenu label="帖子管理">
+                        <p:menuitem value="我要发帖" outcome="post/Create"/>
+                        <p:menuitem value="查看评论" outcome="personalReply.xhtml"/>
+                        <p:menuitem value="已发表" outcome="getPersonalPost.xhtml"/>
+                    </p:submenu>
+                </p:menu>  
+                </h:form>
+            </p:layoutUnit>
+            <p:layoutUnit position="center">
+                <h:form>
+                <br>
+                    查看感兴趣的内容<h:inputText value="#{postController.like}" > </h:inputText>
+                </br>
+                <br/><h:commandButton value="查找" action="#{postController.findPostByLike()}"/>
+                </h:form>
+                <br/>
+               
+                <br/>
+                <h:panelGroup rendered="true">
+                    <h:form styleClass="jsfcrud_list_form">
+                    <h:dataTable var="Post"
+                                 value="#{postController.postSearchResults}"
+                                 border="0"
+                                 cellpadding="2"
+                                 cellspacing="0"
+                                 rowClasses="jsfcrud_odd_row,jsfcrud_even_row"
+                                 rules="all"
+                                 rendered="true">
+                        <h:column>
+                        <f:facet name="header">
+                        <h:outputText value="编号" />
+                        </f:facet>
+                            <h:outputText value="#{Post.idPost}" />
+                       </h:column>
+                        <h:column>
+                        <f:facet name="header">
+                        <h:outputText value="用户编号" />
+                        </f:facet>
+                            <h:outputText value="#{Post.idPeople.idPeople}" />
+                       </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                        <h:outputText value="内容" />
+                        </f:facet>
+                            <h:outputText value="#{Post.contentPost}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                            <h:outputText value="类型" />
+                           </f:facet>
+                            <h:outputText value="#{Post.type}"/>
+                        </h:column>
+                        <h:column>
+                             <f:facet name="header">
+                            <h:outputText value="互动" />
+                           </f:facet>
+                            <h:commandLink action="#{replyController.prepareCreate}" value="回复"/>
+                        </h:column>
+                        <h:column>
+                            <h:commandLink action="responsive.xhtml" value="查看评论"/>
+                        </h:column>
+                    </h:dataTable>
+                    </h:form>
+             </h:panelGroup>
+                 <br/>
+                <br/>
+                <br/>
+                <br/>
+                <h:form>
+                    <p:menubar>
+                        <p:submenu label="人文生活">
+                        <p:menuitem value="发帖" url="1_.xhtml"></p:menuitem>
+                        <p:menuitem value="随便逛逛" url="1.xhtml"></p:menuitem>
+                        </p:submenu>
+                        <p:submenu label="科技生活">
+                            <p:menuitem value="发帖" url="2_.xhtml"></p:menuitem>
+                        <p:menuitem value="随便逛逛" url="2.xhtml"></p:menuitem>
+                        </p:submenu>
+                        <p:submenu label="情感生活">
+                        <p:menuitem value="发帖" url="3_.xhtml"></p:menuitem>
+                        <p:menuitem value="随便逛逛" url="3.xhtml"></p:menuitem>
+                        </p:submenu>
+                        <p:submenu label="健康">
+                            <p:menuitem value="发帖" url="4_.xhtml"></p:menuitem>
+                        <p:menuitem value="随便逛逛" url="4.xhtml"></p:menuitem>
+                        </p:submenu>
+                        <p:submenu label="学习">
+                        <p:menuitem value="发帖" url="5_.xhtml"></p:menuitem>
+                        <p:menuitem value="随便逛逛" url="5.xhtml"></p:menuitem>
+                        </p:submenu>
+                        <p:submenu label="实习">
+                        <p:menuitem value="发帖" url="6_.xhtml"></p:menuitem>
+                        <p:menuitem value="随便逛逛" url="6.xhtml"></p:menuitem>
+                        </p:submenu>
+                        <p:submenu label="美食">
+                        <p:menuitem value="发帖" url="7_.xhtml"></p:menuitem>
+                        <p:menuitem value="随便逛逛" url="7.xhtml"></p:menuitem>
+                        </p:submenu>
+                        <p:submenu label="体育健身" >
+                        <p:menuitem value="发帖" url="8_.xhtml"></p:menuitem>
+                        <p:menuitem value="随便逛逛" url="8.xhtml"></p:menuitem>
+                        </p:submenu>
+                        <p:submenu label="乡亲乡爱">
+                        <p:menuitem value="发帖" url="9_.xhtml"></p:menuitem>
+                        <p:menuitem value="随便逛逛" url="9.xhtml"></p:menuitem>
+                        </p:submenu>
+                        <p:submenu label="游戏对战">
+                        <p:menuitem value="发帖" url="10_.xhtml"></p:menuitem>
+                        <p:menuitem value="随便逛逛" url="10.xhtml"></p:menuitem>
+                        </p:submenu>
+                        <p:submenu label="人文艺术">
+                        <p:menuitem value="发帖" url="11_.xhtml"></p:menuitem>
+                        <p:menuitem value="随便逛逛" url="11.xhtml"></p:menuitem>
+                        </p:submenu>
+                        <p:submenu label="信息社会">
+                        <p:menuitem value="发帖" url="12_.xhtml"></p:menuitem>
+                        <p:menuitem value="随便逛逛" url="12.xhtml"></p:menuitem>
+                        </p:submenu>
+                        <p:submenu label="其他">
+                        <p:menuitem value="发帖" url="13_.xhtml"></p:menuitem>
+                        <p:menuitem value="随便逛逛" url="13.xhtml"></p:menuitem>
+                        </p:submenu>
+                    </p:menubar>
+                </h:form>
+                
+                <h:form styleClass="jsfcrud_list_form">
+                    <h:outputText escape="false" value="#{bundle.ListPostEmpty}" rendered="#{postController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{postController.items.rowCount >0}">
+                    <h:outputText value="#{postController.pagination.pageFirstItem + 1}..#{postController.pagination.pageLastItem + 1}/#{postController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{postController.previous}" value="#{bundle.Previous} #{postController.pagination.pageSize}" rendered="#{postController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{postController.next}" value="#{bundle.Next} #{postController.pagination.pageSize}" rendered="#{postController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{postController.items}" var="item" border="0"  cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px ;width:100%">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPostTitle_idPost}" />
+                            </f:facet>
+                            <h:outputText value="#{item.idPost}" />
+                        </h:column>
+                        <h:column>
+                        <f:facet name="header">
+                        <h:outputText value="用户编号" />
+                        </f:facet>
+                            <h:outputText value="#{item.idPeople.idPeople}" />
+                       </h:column>
+                        <h:column>
+                            <f:facet name="header" >
+                                <h:outputText value="#{bundle.ListPostTitle_contentPost}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.contentPost}"/>
+                        </h:column>
+                        <h:column>
+                             <f:facet name="header">
+                                <h:outputText value="类型"/>
+                            </f:facet>
+                            <p >
+                            <h:outputText  value="#{item.type}" />
+                            </p>
+                        </h:column>
+                        <h:column>
+                            <h:commandLink action="#{replyController.prepareCreate}" value="回复"/>
+                        </h:column>
+                        <h:column>
+                            <h:commandButton action="responsive.xhtml" value="查看评论"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                </h:form>
+                 
+            </p:layoutUnit>
+            <p:layoutUnit position="south">
+                <br/><font style="color: #e33b06">严禁发任何违反相关法律的帖子</font>
+                <br/><font style="color: #e33b06">严禁未经允许站内发广告</font>
+                <p:stack icon="resources/images/add1.png" expanded="true">
+                <p:menuitem value="退出" icon="resources/images/add2.png" url="login.xhtml"/>
+                 <p:menuitem value="管理员" icon="resources/images/member.png" url="admin_login.xhtml"/>
+               </p:stack>
+            </p:layoutUnit>
+        </p:layout>
+    </f:view>
+</html>

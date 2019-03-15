@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+   <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+             <h:head>
+                <h:outputStylesheet name="css/jsfcrud.css"/>
+             <style type="text/css">  
+            body {  
+                margin: 0; 
+                background-image: url('resources/images/register_.jpg'); 
+                background-size:cover;   
+            }  
+              </style> 
+            </h:head>
+            <h:outputText value="创建新账户"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form>
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+                <h:panelGrid columns="2">
+                    
+                    <h:outputLabel value="#{bundle.CreatePeopleLabel_idPeople}" for="idPeople" />
+                    <h:inputText id="idPeople" value="#{peopleController.selected.idPeople}" title="#{bundle.CreatePeopleTitle_idPeople}" required="true" requiredMessage="#{bundle.CreatePeopleRequiredMessage_idPeople}"/>
+                 
+                   
+                    <h:outputLabel value="#{bundle.CreatePeopleLabel_namePeople}" for="namePeople" />
+                    <h:inputText id="namePeople" value="#{peopleController.selected.namePeople}" title="#{bundle.CreatePeopleTitle_namePeople}" required="true" requiredMessage="#{bundle.CreatePeopleRequiredMessage_namePeople}"/>
+                    
+                    <h:outputLabel value="#{bundle.CreatePeopleLabel_password}" for="password" />
+                    <h:inputText id="password" value="#{peopleController.selected.password}" title="#{bundle.CreatePeopleTitle_password}" required="true" requiredMessage="#{bundle.CreatePeopleRequiredMessage_password}"/>
+                   
+                </h:panelGrid>
+                 
+                <br />
+               
+                <h:commandButton action="#{peopleController.create()}" value="#{bundle.CreatePeopleSaveLink}" />
+                
+           </h:form>
+            
+             </ui:define>
+    </ui:composition>
+    
+</html>
+

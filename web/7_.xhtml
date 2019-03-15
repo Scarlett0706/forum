@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:head>
+                <h:outputStylesheet name="css/jsfcrud.css"/>
+             <style type="text/css">  
+            body {  
+                margin: 0; 
+                background-image: url('resources/images/register_.jpg'); 
+                background-position:0% 15%;  
+                background-size:cover;   
+            }  
+              </style>  
+            </h:head>
+            <h:outputText value="#{bundle.CreatePostTitle}"></h:outputText>
+        </ui:define>
+        
+
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreatePostLabel_idPost}" for="idPost" />
+                    <h:inputText id="idPost" value="#{postController.selected.idPost}" title="#{bundle.CreatePostTitle_idPost}" required="true" requiredMessage="#{bundle.CreatePostRequiredMessage_idPost}"/>
+                    <h:outputLabel value="#{bundle.CreatePostLabel_contentPost}" for="contentPost" />
+                    <h:inputText id="contentPost" value="#{postController.selected.contentPost}" title="#{bundle.CreatePostTitle_contentPost}" required="true" requiredMessage="#{bundle.CreatePostRequiredMessage_contentPost}"/>
+                    <h:outputLabel value="#{bundle.CreatePostLabel_type}" for="type" />
+                    <h:outputText id="type" value="美食" title="#{bundle.CreatePostTitle_type}" />
+                    <h:commandButton  action="#{postController.selected.setType7()}" value="点击确认类型" >
+                    </h:commandButton>
+                    <br/>
+                    <h:outputLabel value="#{bundle.CreatePostLabel_idPeople}" for="idPeople" />
+                    <h:selectOneMenu id="idPeople" value="#{postController.selected.idPeople}" title="#{bundle.CreatePostTitle_idPeople}" required="true" requiredMessage="#{bundle.CreatePostRequiredMessage_idPeople}">
+                        <f:selectItems value="#{peopleController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandButton action="#{postController.create()}" value="#{bundle.CreatePostSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="/post/List" value="#{bundle.CreatePostShowAllLink}" immediate="true"/>
+                <br />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

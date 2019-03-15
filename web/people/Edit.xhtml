@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+             <h:head>
+                <h:outputStylesheet name="css/jsfcrud.css"/>
+             <style type="text/css">  
+            body {  
+                margin: 0; 
+                background-image: url('resources/images/register_.jpg'); 
+                background-position:0% 15%;  
+                background-size:cover;   
+            }  
+              </style>  
+            </h:head>
+            <h:outputText value="#{bundle.EditPeopleTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditPeopleLabel_idPeople}" for="idPeople" />
+                    <h:outputText id="idPeople" value="#{peopleController.idPeople}" title="#{bundle.EditPeopleTitle_idPeople}"/>
+                    <h:outputLabel value="#{bundle.EditPeopleLabel_namePeople}" for="namePeople" />
+                    <h:inputText id="namePeople" value="#{peopleController.selected.namePeople}" title="#{bundle.EditPeopleTitle_namePeople}" required="true" requiredMessage="#{bundle.EditPeopleRequiredMessage_namePeople}"/>
+                    <h:outputLabel value="#{bundle.EditPeopleLabel_password}" for="password" />
+                    <h:inputText id="password" value="#{peopleController.selected.password}" title="#{bundle.EditPeopleTitle_password}" required="true" requiredMessage="#{bundle.EditPeopleRequiredMessage_password}"/>
+                </h:panelGrid>
+                <h:commandLink action="#{peopleController.update}" value="#{bundle.EditPeopleSaveLink}"/>
+                <br />
+                <br />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

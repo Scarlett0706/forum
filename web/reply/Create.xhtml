@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+             <h:head>
+                <h:outputStylesheet name="css/jsfcrud.css"/>
+             <style type="text/css">  
+            body {  
+                margin: 0; 
+                background-image: url('resources/images/register_.jpg');   
+                background-size:cover;   
+            }  
+              </style>  
+            </h:head>
+            <h:outputText value="回复"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2" >
+                    <h:outputLabel value="#{bundle.CreateReplyLabel_idReply}" for="idReply" />
+                    <h:inputText id="idReply" value="#{replyController.selected.idReply}" title="#{bundle.CreateReplyTitle_idReply}" required="true" requiredMessage="#{bundle.CreateReplyRequiredMessage_idReply}"/>
+                    <h:outputLabel value="#{bundle.CreateReplyLabel_contentReply}" for="contentReply" />
+                    <h:inputText id="contentReply" value="#{replyController.selected.contentReply}" title="#{bundle.CreateReplyTitle_contentReply}" required="true" requiredMessage="#{bundle.CreateReplyRequiredMessage_contentReply}"/>
+                    <h:outputLabel value="#{bundle.CreateReplyLabel_idPeople}" for="idPeople" />
+                    <h:inputText id="idPeople" value="#{replyController.selected.idPeople}" title="#{bundle.CreateReplyTitle_idPeople}" required="true" requiredMessage="#{bundle.CreateReplyRequiredMessage_idPeople}"/>
+                    <h:outputLabel value="#{bundle.CreateReplyLabel_idPost}" for="idPost" />
+                    <h:selectOneMenu id="idPost" value="#{replyController.selected.idPost}" title="#{bundle.CreateReplyTitle_idPost}" required="true" requiredMessage="#{bundle.CreateReplyRequiredMessage_idPost}">
+                        <f:selectItems value="#{postController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{replyController.create}" value="#{bundle.CreateReplySaveLink}" />
+                <br />
+                <br />
+              
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

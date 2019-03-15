@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+    
+    <f:view contentType="text/html">
+        
+    <h:head>
+        
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>PrimeFaces</title>
+               
+            </f:facet>
+        </h:head>
+    
+    <h:body>
+        <p:layout fullPage="true">
+            <p:layoutUnit position="north" size="90">
+                <p style="background-image: url(resources/images/top_.jpg);height: 100%;width: 100%" align="center">
+                
+                
+                </p>
+            </p:layoutUnit>
+            <p:layoutUnit position="west" size="850" resizable="true" closable="true" collapsible="true">
+                <p:galleria value="#{imagesView.images}" var="image" panelWidth="950" panelHeight="600" showCaption="true">
+                    <p:graphicImage name="images/#{image}" alt="北邮一角" title="#{image}" width="100%" height="100%" />
+                </p:galleria>
+            </p:layoutUnit>
+            
+            <p:layoutUnit position="center" size="1000" resizable="true" closable="true" collapsible="true">
+                <p style="background-image:url(resources/images/top.jpg);width:100%;height:600px">
+                 <div style="position: absolute; top:200px;left:370px">
+                     <p style="background-color: #fefeff">
+                        <h:form>
+                            <br/> <font style="background-color: #fefeff"> 账号</font> <h:inputText required="true" value="#{peopleController.idPeople}"></h:inputText>
+                            
+                            <br/>
+                            <br/> <font style="background-color: #fefeff"> 密码</font><h:inputSecret  value="#{peopleController.password}"></h:inputSecret>
+                            <br/>
+                            <br/>
+                            <br>
+                                <p align="center">     
+                                <h:commandButton value="确定" action="#{peopleController.findPeopleByIdAndPassword()}">
+                                </h:commandButton> 
+                                <h:commandLink value="注册" action="register.xhtml" />
+                                <h:outputText  value="   "/>
+                                <h:commandLink value="管理员登陆" action="admin_login.xhtml" />
+                                </p>  
+                            </br>
+                         </h:form>
+                     </p>   
+                    </div>
+                </p>
+            </p:layoutUnit> 
+        </p:layout>
+
+    </h:body>
+    </f:view>
+</html>
+
+
+

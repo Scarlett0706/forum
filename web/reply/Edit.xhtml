@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+             <h:head>
+                <h:outputStylesheet name="css/jsfcrud.css"/>
+             <style type="text/css">  
+            body {  
+                margin: 0; 
+                background-image: url('resources/images/register_.jpg'); 
+                background-position:0% 15%;  
+                background-size:cover;   
+            }  
+              </style>  
+            </h:head>
+            <h:outputText value="#{bundle.EditReplyTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditReplyLabel_idReply}" for="idReply" />
+                    <h:inputText id="idReply" value="#{replyController.selected.idReply}" title="#{bundle.EditReplyTitle_idReply}" required="true" requiredMessage="#{bundle.EditReplyRequiredMessage_idReply}"/>
+                    <h:outputLabel value="#{bundle.EditReplyLabel_contentReply}" for="contentReply" />
+                    <h:inputText id="contentReply" value="#{replyController.selected.contentReply}" title="#{bundle.EditReplyTitle_contentReply}" required="true" requiredMessage="#{bundle.EditReplyRequiredMessage_contentReply}"/>
+                    <h:outputLabel value="#{bundle.EditReplyLabel_idPeople}" for="idPeople" />
+                    <h:inputText id="idPeople" value="#{replyController.selected.idPeople}" title="#{bundle.EditReplyTitle_idPeople}" required="true" requiredMessage="#{bundle.EditReplyRequiredMessage_idPeople}"/>
+                    <h:outputLabel value="#{bundle.EditReplyLabel_idPost}" for="idPost" />
+                    <h:selectOneMenu id="idPost" value="#{replyController.selected.idPost}" title="#{bundle.EditReplyTitle_idPost}" required="true" requiredMessage="#{bundle.EditReplyRequiredMessage_idPost}">
+                        <f:selectItems value="#{postController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{replyController.update}" value="#{bundle.EditReplySaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditReplyViewLink}"/>
+                <br />
+                <h:commandLink action="#{replyController.prepareList}" value="#{bundle.EditReplyShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditReplyIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

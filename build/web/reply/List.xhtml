@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+             <h:head>
+                <h:outputStylesheet name="css/jsfcrud.css"/>
+             <style type="text/css">  
+            body {  
+                margin: 0; 
+                background-image: url('resources/images/register_.jpg'); 
+                background-position:0% 15%;  
+                background-size:cover;   
+            }  
+              </style>  
+            </h:head>
+            <h:outputText value="#{bundle.ListReplyTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListReplyEmpty}" rendered="#{replyController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{replyController.items.rowCount > 0}">
+                    <h:outputText value="#{replyController.pagination.pageFirstItem + 1}..#{replyController.pagination.pageLastItem + 1}/#{replyController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{replyController.previous}" value="#{bundle.Previous} #{replyController.pagination.pageSize}" rendered="#{replyController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{replyController.next}" value="#{bundle.Next} #{replyController.pagination.pageSize}" rendered="#{replyController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{replyController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px;width: 100%">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListReplyTitle_idReply}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idReply}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListReplyTitle_contentReply}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.contentReply}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListReplyTitle_idPeople}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idPeople}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListReplyTitle_idPost}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idPost}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{replyController.prepareView}" value="#{bundle.ListReplyViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{replyController.prepareEdit}" value="#{bundle.ListReplyEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{replyController.destroy}" value="#{bundle.ListReplyDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{replyController.prepareCreate}" value="#{bundle.ListReplyCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListReplyIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

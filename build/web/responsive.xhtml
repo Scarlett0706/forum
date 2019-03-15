@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+         <h:outputStylesheet name="css/jsfcrud.css"/>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>查看回复</title>
+               
+            </f:facet>
+    </h:head>
+    <h:body style="background-image: url(resources/images/register_.jpg);background-size: cover">
+        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+        <h:form>
+           输入帖子编号查看评论内容 <h:inputText value="#{replyController.postId}"/>
+            <h:commandButton value="确认" action="#{replyController.findPostByPostId()}"/>
+        </h:form>
+        <br/>
+        <br/>
+             <h:panelGroup rendered="true">
+                 <h:form  styleClass="jsfcrud_list_form">
+                    <h:dataTable var="Reply"
+                                 value="#{replyController.replySearchResults}"
+                                 border="0"
+                                 cellpadding="2"
+                                 cellspacing="0"
+                                 rowClasses="jsfcrud_odd_row,jsfcrud_even_row"
+                                 rules="all"
+                                 width="100%"
+                                 rendered="true">
+                        <h:column>
+                        <f:facet name="header">
+                        <h:outputText value="编号" />
+                        </f:facet>
+                            <h:outputText value="#{Reply.idReply}" />
+                       </h:column>
+                        <h:column>
+                        <f:facet name="header">
+                        <h:outputText value="帖子编号" />
+                        </f:facet>
+                            <h:outputText value="#{Reply.idPost.idPost}" />
+                       </h:column>
+                        <h:column>
+                        <f:facet name="header">
+                        <h:outputText value="帖子作者" />
+                        </f:facet>
+                            <h:outputText value="#{Reply.idPost.idPeople}" />
+                       </h:column>
+                        <h:column>
+                        <f:facet name="header">
+                        <h:outputText value="帖子内容" />
+                        </f:facet>
+                            <h:outputText value="#{Reply.idPost.contentPost}" />
+                       </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                        <h:outputText value="评论内容" />
+                        </f:facet>
+                            <h:outputText value="#{Reply.contentReply}"/>
+                        </h:column>
+                         <h:column>
+                        <f:facet name="header">
+                        <h:outputText value="评论人" />
+                        </f:facet>
+                             <h:outputText value="#{Reply.idPeople}" />
+                       </h:column>
+                    </h:dataTable>
+                 </h:form>
+             </h:panelGroup>
+    </h:body>
+</html>
+
